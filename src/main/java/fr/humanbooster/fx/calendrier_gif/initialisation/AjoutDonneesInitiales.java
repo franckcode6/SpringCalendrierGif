@@ -2,7 +2,6 @@ package fr.humanbooster.fx.calendrier_gif.initialisation;
 
 import java.time.LocalDate;
 import java.util.Locale;
-import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import fr.humanbooster.fx.calendrier_gif.dao.ThemeDao;
 import fr.humanbooster.fx.calendrier_gif.dao.UtilisateurDao;
 import lombok.AllArgsConstructor;
 
-//grace à cette annotation Spring va ajouter une instance de cette classe dans son conteneur
+//Grace à cette annotation Spring va ajouter une instance de cette classe dans son conteneur
 @Component
 @AllArgsConstructor
 public class AjoutDonneesInitiales implements CommandLineRunner {
@@ -29,12 +28,11 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final UtilisateurDao utilisateurDao;
 
 	private final Faker faker = new Faker(new Locale("fr-FR"));
-	private static Random random = new Random();
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		//EMOTIONS
+		// EMOTIONS
 		System.out.println("Ajout des émotions");
 		emotionDao.save(new Emotion("Souriant", "&#x1F600;"));
 		emotionDao.save(new Emotion("Monocle", "&#x1F9D0;"));
@@ -42,12 +40,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		emotionDao.save(new Emotion("Coeur", "&#x1F60D;"));
 		emotionDao.save(new Emotion("PTDR", "&#x1F923;"));
 
-		//THEMES
+		// THEMES
 		System.out.println("Ajout des thèmes");
-		themeDao.save(new Theme("dark"));
-		themeDao.save(new Theme("bachata"));
+		themeDao.save(new Theme("Dark"));
+		themeDao.save(new Theme("Bachata"));
 
-		//JOURS
+		// JOURS
 		System.out.println("Ajout des jours");
 		int anneeEnCours = LocalDate.now().getYear();
 		int moisEnCours = LocalDate.now().getMonthValue();
@@ -58,15 +56,15 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			localDate = localDate.plusDays(1);
 		}
 
-		//UTILISATEURS
+		// UTILISATEURS
 		System.out.println("Ajout des utilisateurs");
 		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
-		//Creation du boucle pour générer des utilisateurs aléatoires avec thème1
+		// Creation d'une boucle pour générer des utilisateurs aléatoires avec thème1
 		for (int i = 0; i < 5; i++) {
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
 					faker.internet().emailAddress(), "12345", themeDao.getById(1L)));
 		}
-		//Creation du boucle pour générer des utilisateurs aléatoires avec thème2
+		// Creation d'une boucle pour générer des utilisateurs aléatoires avec thème2
 		for (int i = 0; i < 5; i++) {
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
 					faker.internet().emailAddress(), "12345", themeDao.getById(2L)));

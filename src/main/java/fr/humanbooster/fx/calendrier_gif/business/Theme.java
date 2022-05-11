@@ -21,7 +21,7 @@ public class Theme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "Veuillez saisir un nom de thème")
 	private String nom;
 

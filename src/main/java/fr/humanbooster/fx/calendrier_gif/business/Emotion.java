@@ -21,10 +21,10 @@ public class Emotion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank(message="Veuiilez saisir le nom de l'émotion")
+
+	@NotBlank(message = "Veuiilez saisir le nom de l'émotion")
 	private String nom;
-	
+
 	@NotBlank(message = "Veuillez saisir le code de l'émotion")
 	private String code;
 

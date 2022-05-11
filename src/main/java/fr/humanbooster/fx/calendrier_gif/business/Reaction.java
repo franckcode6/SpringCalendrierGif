@@ -22,16 +22,16 @@ public class Reaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "date_heure")
 	private LocalDateTime dateHeure;
-	
+
 	@ManyToOne
 	private Gif gif;
-	
+
 	@ManyToOne
 	private Emotion emotion;
-	
+
 	@ManyToOne
 	private Utilisateur utilisateur;
 

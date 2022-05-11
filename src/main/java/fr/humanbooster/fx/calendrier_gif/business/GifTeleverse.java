@@ -15,7 +15,7 @@ public class GifTeleverse extends Gif {
 
 	@Column(name = "nom_fichier_original")
 	protected String nomFichierOriginal;
-	
+
 	public GifTeleverse(String nomFichierOriginal, String legende, Jour jour, Utilisateur utilisateur) {
 		super(legende, jour, utilisateur);
 		this.nomFichierOriginal = nomFichierOriginal;

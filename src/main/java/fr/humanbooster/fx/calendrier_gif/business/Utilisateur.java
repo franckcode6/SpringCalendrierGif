@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -39,11 +38,9 @@ public class Utilisateur {
 	private String prenom;
 
 	@NotBlank(message = "Veuillez saisir votre email")
-	@Email(message = "Adresse mail non valide")
 	private String email;
 
 	@Column(name = "mot_de_passe")
-	@NotBlank(message = "Mot de passe invalide")
 	private String motDePasse;
 
 	@Column(name = "nb_points")

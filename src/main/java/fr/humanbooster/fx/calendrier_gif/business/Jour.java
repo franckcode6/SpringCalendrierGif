@@ -21,14 +21,14 @@ public class Jour {
 
 	@Id
 	private LocalDate date;
-	
+
 	@Column(name = "nb_points")
 	private int nbPoints;
-	
+
 	@OneToOne(mappedBy = "jour")
 	@ToString.Exclude
 	private Gif gif;
-	
+
 	private static Random random = new Random();
 
 	public Jour() {
@@ -48,7 +48,7 @@ public class Jour {
 	}
 
 	public String toString() {
-		return date.getDayOfMonth() + "/" +  date.getMonthValue();
+		return date.getDayOfMonth() + "/" + date.getMonthValue();
 	}
 
 }
