@@ -62,12 +62,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		// Creation d'une boucle pour générer des utilisateurs aléatoires avec thème1
 		for (int i = 0; i < 5; i++) {
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
-					faker.internet().emailAddress(), "12345", themeDao.getById(1L)));
+					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(1L)));
 		}
 		// Creation d'une boucle pour générer des utilisateurs aléatoires avec thème2
 		for (int i = 0; i < 5; i++) {
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
-					faker.internet().emailAddress(), "12345", themeDao.getById(2L)));
+					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(2L)));
 		}
 	}
 }

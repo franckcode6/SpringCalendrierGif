@@ -40,6 +40,7 @@ public class Utilisateur {
 	@NotBlank(message = "Veuillez saisir votre email")
 	private String email;
 
+	@NotBlank(message = "Mot de passe obligatoire")
 	@Column(name = "mot_de_passe")
 	private String motDePasse;
 
