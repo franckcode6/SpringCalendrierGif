@@ -32,19 +32,15 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		// EMOTIONS
-		System.out.println("Ajout des émotions");
 		ajouterEmotions();
 
 		// THEMES
-		System.out.println("Ajout des thèmes");
 		ajouterThemes();
 
 		// JOURS
-		System.out.println("Ajout des jours");
 		ajouterJours();
 
 		// UTILISATEURS
-		System.out.println("Ajout des utilisateurs");
 		ajouterUtilisateurParDéfaut();
 		ajouterUtilisateurs();
 	}
@@ -53,6 +49,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des émotions
 	 */
 	private void ajouterEmotions() {
+		System.out.println("Ajout des émotions");
 		emotionDao.save(new Emotion("Souriant", "&#x1F600;"));
 		emotionDao.save(new Emotion("Monocle", "&#x1F9D0;"));
 		emotionDao.save(new Emotion("Bisous", "&#x1F618;"));
@@ -64,6 +61,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des thèmes
 	 */
 	private void ajouterThemes() {
+		System.out.println("Ajout des thèmes");
 		themeDao.save(new Theme("Dark"));
 		themeDao.save(new Theme("Bachata"));
 	}
@@ -72,6 +70,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des jours
 	 */
 	private void ajouterJours() {
+		System.out.println("Ajout des jours");
 		int anneeEnCours = LocalDate.now().getYear();
 		int moisEnCours = LocalDate.now().getMonthValue();
 		LocalDate localDate = LocalDate.of(anneeEnCours, moisEnCours, 1);
@@ -86,6 +85,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout d'un utilisateur par défaut
 	 */
 	private void ajouterUtilisateurParDéfaut() {
+		System.out.println("Ajout utilisateur par défaut");
 		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
 	}
 
@@ -93,6 +93,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des utilisateurs randoms
 	 */
 	private void ajouterUtilisateurs() {
+		System.out.println("Ajout des utilisateurs");
 		// Creation d'une boucle pour générer des utilisateurs aléatoires
 		for (int i = 0; i < 5; i++) {
 			// Utilisateurs possédant le thème 1
