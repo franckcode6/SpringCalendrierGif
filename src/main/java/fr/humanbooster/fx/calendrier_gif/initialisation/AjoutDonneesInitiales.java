@@ -26,7 +26,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final ThemeDao themeDao;
 	private final JourDao jourDao;
 	private final UtilisateurDao utilisateurDao;
-
 	private final Faker faker = new Faker(new Locale("fr-FR"));
 
 	@Override
@@ -34,19 +33,45 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 		// EMOTIONS
 		System.out.println("Ajout des émotions");
+		ajouterEmotions();
+
+		// THEMES
+		System.out.println("Ajout des thèmes");
+		ajouterThemes();
+
+		// JOURS
+		System.out.println("Ajout des jours");
+		ajouterJours();
+
+		// UTILISATEURS
+		System.out.println("Ajout des utilisateurs");
+		ajouterUtilisateurs();
+
+	}
+
+	/**
+	 * Ajout des émotions
+	 */
+	private void ajouterEmotions() {
 		emotionDao.save(new Emotion("Souriant", "&#x1F600;"));
 		emotionDao.save(new Emotion("Monocle", "&#x1F9D0;"));
 		emotionDao.save(new Emotion("Bisous", "&#x1F618;"));
 		emotionDao.save(new Emotion("Coeur", "&#x1F60D;"));
 		emotionDao.save(new Emotion("PTDR", "&#x1F923;"));
+	}
 
-		// THEMES
-		System.out.println("Ajout des thèmes");
+	/**
+	 * Ajout des thèmes
+	 */
+	private void ajouterThemes() {
 		themeDao.save(new Theme("Dark"));
 		themeDao.save(new Theme("Bachata"));
+	}
 
-		// JOURS
-		System.out.println("Ajout des jours");
+	/**
+	 * Ajout des jours
+	 */
+	private void ajouterJours() {
 		int anneeEnCours = LocalDate.now().getYear();
 		int moisEnCours = LocalDate.now().getMonthValue();
 		LocalDate localDate = LocalDate.of(anneeEnCours, moisEnCours, 1);
@@ -55,9 +80,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			jourDao.save(new Jour(localDate));
 			localDate = localDate.plusDays(1);
 		}
+	}
 
-		// UTILISATEURS
-		System.out.println("Ajout des utilisateurs");
+	/**
+	 * Ajout des utilisateurs
+	 */
+	private void ajouterUtilisateurs() {
 		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
 		// Creation d'une boucle pour générer des utilisateurs aléatoires
 		for (int i = 0; i < 5; i++) {
@@ -68,7 +96,5 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
 					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(2L)));
 		}
-
 	}
-
 }
