@@ -47,7 +47,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		System.out.println("Ajout des utilisateurs");
 		ajouterUtilisateurParDéfaut();
 		ajouterUtilisateurs();
-
 	}
 
 	/**
@@ -82,7 +81,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			localDate = localDate.plusDays(1);
 		}
 	}
-	
+
 	/**
 	 * Ajout d'un utilisateur par défaut
 	 */
@@ -101,7 +100,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(1L)));
 			// Utilisateurs possédant le thème 2
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
-					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(2L)));
+					faker.name().firstName() + "@hb.com", faker.internet().password(), themeDao.getById(2L)));
 		}
 	}
 }
