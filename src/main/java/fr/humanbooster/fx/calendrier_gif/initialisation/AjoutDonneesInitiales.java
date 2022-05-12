@@ -1,10 +1,15 @@
 package fr.humanbooster.fx.calendrier_gif.initialisation;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 import com.github.javafaker.Faker;
 
 import fr.humanbooster.fx.calendrier_gif.business.Emotion;
@@ -27,9 +32,14 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final JourDao jourDao;
 	private final UtilisateurDao utilisateurDao;
 	private final Faker faker = new Faker(new Locale("fr-FR"));
+	private List<Utilisateur> utilisateurs;
+	private List<Jour> jours;
+	private List<Emotion> emotions;
+	private List<Theme> themes;
 
 	@Override
 	public void run(String... args) throws Exception {
+		Date dateDebut = new Date();
 
 		// EMOTIONS
 		ajouterEmotions();
@@ -43,6 +53,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		// UTILISATEURS
 		ajouterUtilisateurParDéfaut();
 		ajouterUtilisateurs();
+
+		Date dateFin = new Date();
+		System.out.println(dateFin.getTime() - dateDebut.getTime());
 	}
 
 	/**
@@ -50,11 +63,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 */
 	private void ajouterEmotions() {
 		System.out.println("Ajout des émotions");
-		emotionDao.save(new Emotion("Souriant", "&#x1F600;"));
-		emotionDao.save(new Emotion("Monocle", "&#x1F9D0;"));
-		emotionDao.save(new Emotion("Bisous", "&#x1F618;"));
-		emotionDao.save(new Emotion("Coeur", "&#x1F60D;"));
-		emotionDao.save(new Emotion("PTDR", "&#x1F923;"));
+		emotions.add(new Emotion("Souriant", "&#x1F600;"));
+		emotions.add(new Emotion("Monocle", "&#x1F9D0;"));
+		emotions.add(new Emotion("Bisous", "&#x1F618;"));
+		emotions.add(new Emotion("Coeur", "&#x1F60D;"));
+		emotions.add(new Emotion("PTDR", "&#x1F923;"));
+		emotionDao.saveAll(emotions);
 	}
 
 	/**
@@ -62,8 +76,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 */
 	private void ajouterThemes() {
 		System.out.println("Ajout des thèmes");
-		themeDao.save(new Theme("Dark"));
-		themeDao.save(new Theme("Bachata"));
+		themes.add(new Theme("Dark"));
+		themes.add(new Theme("Bachata"));
+		themeDao.saveAll(themes);
 	}
 
 	/**
@@ -76,9 +91,10 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		LocalDate localDate = LocalDate.of(anneeEnCours, moisEnCours, 1);
 		int nbJoursDuMoisEnCours = localDate.lengthOfMonth();
 		for (int i = 1; i <= nbJoursDuMoisEnCours; i++) {
-			jourDao.save(new Jour(localDate));
+			jours.add(new Jour(localDate));
 			localDate = localDate.plusDays(1);
 		}
+		jourDao.saveAll(jours);
 	}
 
 	/**
@@ -95,13 +111,22 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private void ajouterUtilisateurs() {
 		System.out.println("Ajout des utilisateurs");
 		// Creation d'une boucle pour générer des utilisateurs aléatoires
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 5000; i++) {
 			// Utilisateurs possédant le thème 1
-			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
-					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(1L)));
+			utilisateurs
+					.add(new Utilisateur(
+							faker.date().past(3000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
+									.toLocalDateTime(),
+							faker.name().lastName(), faker.name().firstName(), faker.internet().emailAddress(),
+							faker.internet().password(), themeDao.getById(1L)));
 			// Utilisateurs possédant le thème 2
-			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
-					faker.name().firstName() + "@hb.com", faker.internet().password(), themeDao.getById(2L)));
+			utilisateurs
+					.add(new Utilisateur(
+							faker.date().past(3000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
+									.toLocalDateTime(),
+							faker.name().lastName(), faker.name().firstName(), faker.internet().emailAddress(),
+							faker.internet().password(), themeDao.getById(2L)));
 		}
+		utilisateurDao.saveAll(utilisateurs);
 	}
 }

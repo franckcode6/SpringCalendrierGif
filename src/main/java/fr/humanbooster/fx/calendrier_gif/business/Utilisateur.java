@@ -77,6 +77,17 @@ public class Utilisateur {
 		this.theme = theme;
 	}
 
+	public Utilisateur(LocalDateTime dateHeureInscription, String nom, String prenom, String email, String motDePasse,
+			Theme theme) {
+		this();
+		this.dateHeureInscription = dateHeureInscription;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.theme = theme;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", motDePasse="

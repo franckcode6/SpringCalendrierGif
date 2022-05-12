@@ -12,4 +12,11 @@ public interface EmotionDao extends JpaRepository<Emotion, Long> {
 	//L'annotation @Query acceuille par défaut une requête HQL
 	@Query("FROM Emotion WHERE nom LIKE 's%'")
 	List<Emotion> findEmotionStartingWithS();
+	
+	/**
+	 * Retourne les 2eres émotions par nom
+	 * @param nom
+	 * @return
+	 */
+	List<Emotion> findFirst2ByNomContaining(String nom);
 }
