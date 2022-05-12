@@ -59,15 +59,16 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		// UTILISATEURS
 		System.out.println("Ajout des utilisateurs");
 		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
-		// Creation d'une boucle pour générer des utilisateurs aléatoires avec thème1
+		// Creation d'une boucle pour générer des utilisateurs aléatoires
 		for (int i = 0; i < 5; i++) {
+			// Utilisateurs possédant le thème 1
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
 					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(1L)));
-		}
-		// Creation d'une boucle pour générer des utilisateurs aléatoires avec thème2
-		for (int i = 0; i < 5; i++) {
+			// Utilisateurs possédant le thème 2
 			utilisateurDao.save(new Utilisateur(faker.name().lastName(), faker.name().firstName(),
 					faker.internet().emailAddress(), faker.internet().password(), themeDao.getById(2L)));
 		}
+
 	}
+
 }
