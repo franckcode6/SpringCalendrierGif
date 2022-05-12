@@ -45,6 +45,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 		// UTILISATEURS
 		System.out.println("Ajout des utilisateurs");
+		ajouterUtilisateurParDéfaut();
 		ajouterUtilisateurs();
 
 	}
@@ -81,12 +82,18 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			localDate = localDate.plusDays(1);
 		}
 	}
+	
+	/**
+	 * Ajout d'un utilisateur par défaut
+	 */
+	private void ajouterUtilisateurParDéfaut() {
+		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
+	}
 
 	/**
-	 * Ajout des utilisateurs
+	 * Ajout des utilisateurs randoms
 	 */
 	private void ajouterUtilisateurs() {
-		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
 		// Creation d'une boucle pour générer des utilisateurs aléatoires
 		for (int i = 0; i < 5; i++) {
 			// Utilisateurs possédant le thème 1
