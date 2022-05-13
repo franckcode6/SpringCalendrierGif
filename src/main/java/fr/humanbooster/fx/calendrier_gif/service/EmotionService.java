@@ -9,7 +9,11 @@ public interface EmotionService {
 	List<Emotion> recupererEmotions();
 
 	void ajouterEmotion(String nom, String code);
+	
+	Emotion recupererEmotion(Long id);
+	
+	public Emotion modifierEmotion(Long id, String nom, String code);
 
-	void effacerEmotion(Emotion emotion);
+	void supprimerEmotion(Long id);
 
 }

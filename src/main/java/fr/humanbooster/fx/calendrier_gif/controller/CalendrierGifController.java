@@ -55,9 +55,11 @@ public class CalendrierGifController {
 
 	// Méthode invoquée lorsque que quelqu'un se rend sur le formulaire contenu dans /emotion
 	@GetMapping("emotion")
-	public ModelAndView emotionGet() {
+	public ModelAndView emotionGet(@RequestParam(name = "id", required = false, defaultValue = "0") Long id) {
 		ModelAndView mav = new ModelAndView();
 
+		//On ajoute dans le mav l'objet emtion (si un id d'emotion a été précisé dans l'URL)
+		mav.addObject("emotion", emotionService.recupererEmotion(id));
 		mav.setViewName("emotion");
 		return mav;
 	}
@@ -65,12 +67,16 @@ public class CalendrierGifController {
 	// Méthode invoquée lorsque que quelqu'un clique le bouton Ajouter du formulaire
 	// contenu dans /emotion
 	@PostMapping("emotion")
-	public ModelAndView emotionPost(@RequestParam("NOM") String nom, @RequestParam("CODE") String code) {
+	public ModelAndView emotionPost(@RequestParam(name="id", required=false) Long id, @RequestParam("NOM") String nom, @RequestParam("CODE") String code) {
 		
 		System.out.println("Nom saisi sur le formulaire HTML : " + nom);
 		System.out.println("Code saisi sur le formulaire HTML : " + code);
-
-		emotionService.ajouterEmotion(nom, code);
+		
+		if (id==null) {
+			emotionService.ajouterEmotion(nom, code);
+		} else {
+			emotionService.modifierEmotion(id, nom, code);
+		}
 
 		return new ModelAndView("redirect:emotions");
 	}

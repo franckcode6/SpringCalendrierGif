@@ -23,10 +23,25 @@ public class EmotionServiceImpl implements EmotionService {
 	public void ajouterEmotion(String nom, String code) {
 		emotionDao.save(new Emotion(nom, code));
 	}
+
+	@Override
+	public Emotion recupererEmotion(Long id) {
+		return emotionDao.findById(id).orElse(null);
+	}
+
 	
 	@Override
-	public void effacerEmotion(Emotion emotion) {
-		emotionDao.delete(emotion);;
+	public Emotion modifierEmotion(Long id, String nom, String code) {
+		Emotion emotion = this.recupererEmotion(id);
+		emotion.setNom(nom);
+		emotion.setCode(code);
+		return emotionDao.save(emotion);
+	}
+	
+	@Override
+	public void supprimerEmotion(Long id) {
+		Emotion emotion = this.recupererEmotion(id);
+		emotionDao.delete(emotion);
 	}
 
 }
