@@ -29,7 +29,6 @@ public class EmotionServiceImpl implements EmotionService {
 		return emotionDao.findById(id).orElse(null);
 	}
 
-	
 	@Override
 	public Emotion modifierEmotion(Long id, String nom, String code) {
 		Emotion emotion = this.recupererEmotion(id);
@@ -37,7 +36,7 @@ public class EmotionServiceImpl implements EmotionService {
 		emotion.setCode(code);
 		return emotionDao.save(emotion);
 	}
-	
+
 	@Override
 	public void supprimerEmotion(Long id) {
 		emotionDao.deleteById(id);

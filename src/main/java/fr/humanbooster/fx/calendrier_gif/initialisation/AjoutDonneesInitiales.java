@@ -57,14 +57,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		ajouterUtilisateurs();
 
 		Date dateFin = new Date();
-		System.out.println(dateFin.getTime() - dateDebut.getTime());
+		System.out.println("Données initiales générées en " + (dateFin.getTime() - dateDebut.getTime()) + " ms");
 	}
 
 	/**
 	 * Ajout des émotions
 	 */
 	private void ajouterEmotions() {
-		System.out.println("Ajout des émotions");
 		emotions.add(new Emotion("Souriant", "&#x1F600;"));
 		emotions.add(new Emotion("Monocle", "&#x1F9D0;"));
 		emotions.add(new Emotion("Bisous", "&#x1F618;"));
@@ -77,7 +76,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des thèmes
 	 */
 	private void ajouterThemes() {
-		System.out.println("Ajout des thèmes");
 		themes.add(new Theme("Dark"));
 		themes.add(new Theme("Bachata"));
 		themeDao.saveAll(themes);
@@ -87,7 +85,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des jours
 	 */
 	private void ajouterJours() {
-		System.out.println("Ajout des jours");
 		int anneeEnCours = LocalDate.now().getYear();
 		int moisEnCours = LocalDate.now().getMonthValue();
 		LocalDate localDate = LocalDate.of(anneeEnCours, moisEnCours, 1);
@@ -103,7 +100,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout d'un utilisateur par défaut
 	 */
 	private void ajouterUtilisateurParDéfaut() {
-		System.out.println("Ajout utilisateur par défaut");
 		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
 	}
 
@@ -111,10 +107,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des utilisateurs randoms
 	 */
 	private void ajouterUtilisateurs() {
-		System.out.println("Ajout des utilisateurs");
-		// Creation d'une boucle pour générer des utilisateurs aléatoires
 		for (int i = 0; i < 10000; i++) {
-			// Utilisateurs possédant le thème 1
 			utilisateurs.add(new Utilisateur(
 					faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
 					faker.name().lastName(), faker.name().firstName(), faker.name().firstName() + "@hb.com",

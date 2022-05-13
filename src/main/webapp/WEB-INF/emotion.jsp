@@ -8,7 +8,12 @@
 <title>Ajout emotion</title>
 </head>
 <body>
+	<c:if test="${emotion eq null }">
 	<h1>Ajouter une nouvelle émotion</h1>
+	</c:if>
+	<c:if test="${emotion ne null }">
+	<h1>Modifier ou supprimer une émotion</h1>
+	</c:if>
 	<form action="emotion" method="post">
 		<input type="hidden" name="ID" value="${emotion.id}"><br>
 		 <label>Nom</label>
@@ -23,7 +28,7 @@
 		</c:if>
 	</form>
 	<c:if test="${emotion ne null}">
-		<a href="supprimerEmotion?ID=${emotion.id}">Supprimer</a>
+		<a href="supprimerEmotion?ID=${emotion.id}"><button>Supprimer</button> </a>
 	</c:if>
 	<jsp:include page="piedDePage.jsp"></jsp:include>
 </body>
