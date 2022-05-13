@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.CommandLineRunner;
@@ -36,6 +37,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private List<Jour> jours;
 	private List<Emotion> emotions;
 	private List<Theme> themes;
+	private static Random random = new Random();
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -111,21 +113,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private void ajouterUtilisateurs() {
 		System.out.println("Ajout des utilisateurs");
 		// Creation d'une boucle pour générer des utilisateurs aléatoires
-		for (int i = 0; i < 5000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			// Utilisateurs possédant le thème 1
-			utilisateurs
-					.add(new Utilisateur(
-							faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
-									.toLocalDateTime(),
-							faker.name().lastName(), faker.name().firstName(), faker.name().firstName() + "@hb.com",
-							faker.internet().password(), themeDao.getById(1L)));
-			// Utilisateurs possédant le thème 2
-			utilisateurs
-					.add(new Utilisateur(
-							faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
-									.toLocalDateTime(),
-							faker.name().lastName(), faker.name().firstName(), faker.name().firstName() + "@hb.com",
-							faker.internet().password(), themeDao.getById(2L)));
+			utilisateurs.add(new Utilisateur(
+					faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
+					faker.name().lastName(), faker.name().firstName(), faker.name().firstName() + "@hb.com",
+					faker.internet().password(), themes.get(random.nextInt(themes.size()))));
 		}
 		utilisateurDao.saveAll(utilisateurs);
 	}
