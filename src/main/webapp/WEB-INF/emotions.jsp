@@ -10,9 +10,11 @@
 <body>
 	<h1>Calendrier GIF: les émotions</h1>
 	<c:forEach items="${emotions}" var="emotion">
-		<li>${emotion.code} : ${emotion.nom}</li>
-		<li> <a href="emotion?id=${emotion.id}">Modifer/Supprimer</a> </li>
+		<li>${emotion.code}: ${emotion.nom}</li>
+		<li><a href="emotion?ID=${emotion.id}">Modifer</a></li>
+		<li><a href="emotion?ID=${emotion.id}">Supprimer</a></li>
 	</c:forEach>
 	<a href="emotion">Ajouter une émotion</a>
+	<jsp:include page="piedDePage.jsp"></jsp:include>
 </body>
 </html>

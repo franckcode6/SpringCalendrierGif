@@ -40,8 +40,7 @@ public class EmotionServiceImpl implements EmotionService {
 	
 	@Override
 	public void supprimerEmotion(Long id) {
-		Emotion emotion = this.recupererEmotion(id);
-		emotionDao.delete(emotion);
+		emotionDao.deleteById(id);
 	}
 
 }
