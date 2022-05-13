@@ -92,9 +92,9 @@ public interface UtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	Utilisateur findUserByEmailAndMdp(@Param("email") String email, @Param("motDePasse") String motDePasse);
 
 	@Query(value = """
-			SELECT new fr.humanbooster.fx.calendrier_gif.util.NbInscrits(  month(u.dateHeureInscription), year(u.dateHeureInscription), COUNT(u) AS NbInscrits)
+			SELECT new fr.humanbooster.fx.calendrier_gif.util.NbInscrits(year(u.dateHeureInscription), month(u.dateHeureInscription), COUNT(*) AS NbInscrits)
 			FROM Utilisateur u
-			GROUP BY month(u.dateHeureInscription), year(u.dateHeureInscription)
+			GROUP BY year(u.dateHeureInscription), month(u.dateHeureInscription)
 			""")
 	List<NbInscrits> findNbInscrits();
 }
