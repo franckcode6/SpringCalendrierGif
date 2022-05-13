@@ -115,16 +115,16 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			// Utilisateurs possédant le thème 1
 			utilisateurs
 					.add(new Utilisateur(
-							faker.date().past(3000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
+							faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
 									.toLocalDateTime(),
-							faker.name().lastName(), faker.name().firstName(), faker.internet().emailAddress(),
+							faker.name().lastName(), faker.name().firstName(), faker.name().firstName() + "@hb.com",
 							faker.internet().password(), themeDao.getById(1L)));
 			// Utilisateurs possédant le thème 2
 			utilisateurs
 					.add(new Utilisateur(
-							faker.date().past(3000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
+							faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault())
 									.toLocalDateTime(),
-							faker.name().lastName(), faker.name().firstName(), faker.internet().emailAddress(),
+							faker.name().lastName(), faker.name().firstName(), faker.name().firstName() + "@hb.com",
 							faker.internet().password(), themeDao.getById(2L)));
 		}
 		utilisateurDao.saveAll(utilisateurs);
