@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ajout emotion</title>
 </head>
 <body>
-<h1>Calendrier GIF: les émotions</h1>
-<c:forEach items="${emotions}" var="emotion">
-	<li> ${emotion.code} : ${emotion.nom}</li>
-</c:forEach>
+<h1>Ajouter une nouvelle émotion</h1>
+<form action="emotion" method="post">
+<label>Nom</label><input type="text" name="NOM"><br>
+<label>Code</label><input type="text" name="CODE"><br>
+<input type="submit" value="Ajouter">
+</form>
+<jsp:include page="piedDePage.jsp"></jsp:include>
 </body>
 </html>

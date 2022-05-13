@@ -12,12 +12,21 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class EmotionServiceImpl implements EmotionService {
-	
+
 	private final EmotionDao emotionDao;
-	
+
 	public List<Emotion> recupererEmotions() {
 		return emotionDao.findAll();
 	}
+
+	@Override
+	public void ajouterEmotion(String nom, String code) {
+		emotionDao.save(new Emotion(nom, code));
+	}
 	
+	@Override
+	public void effacerEmotion(Emotion emotion) {
+		emotionDao.delete(emotion);;
+	}
 
 }

@@ -8,4 +8,8 @@ public interface EmotionService {
 	
 	List<Emotion> recupererEmotions();
 
+	void ajouterEmotion(String nom, String code);
+
+	void effacerEmotion(Emotion emotion);
+
 }

@@ -1,7 +1,10 @@
 package fr.humanbooster.fx.calendrier_gif.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.humanbooster.fx.calendrier_gif.service.EmotionService;
@@ -39,14 +42,36 @@ public class CalendrierGifController {
 		return mav;
 	}
 
-	//Emotions
-	@RequestMapping("/emotions")
-	public ModelAndView emotionGetAll() {
+	// Méthode invoquée lorsque que quelqu'un se rend sur /emotions
+	@GetMapping("/emotions")
+	public ModelAndView emotionsGet() {
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("emotion");
+		mav.setViewName("emotions");
 
 		mav.addObject("emotions", emotionService.recupererEmotions());
 		return mav;
+	}
+
+	// Méthode invoquée lorsque que quelqu'un se rend sur le formulaire contenu dans /emotion
+	@GetMapping("emotion")
+	public ModelAndView emotionGet() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("emotion");
+		return mav;
+	}
+
+	// Méthode invoquée lorsque que quelqu'un clique le bouton Ajouter du formulaire
+	// contenu dans /emotion
+	@PostMapping("emotion")
+	public ModelAndView emotionPost(@RequestParam("NOM") String nom, @RequestParam("CODE") String code) {
+		
+		System.out.println("Nom saisi sur le formulaire HTML : " + nom);
+		System.out.println("Code saisi sur le formulaire HTML : " + code);
+
+		emotionService.ajouterEmotion(nom, code);
+
+		return new ModelAndView("redirect:emotions");
 	}
 }
