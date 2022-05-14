@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.humanbooster.fx.calendrier_gif.business.Theme;
 import fr.humanbooster.fx.calendrier_gif.service.EmotionService;
+import fr.humanbooster.fx.calendrier_gif.service.ThemeService;
 import fr.humanbooster.fx.calendrier_gif.service.UtilisateurService;
 import lombok.AllArgsConstructor;
 
@@ -17,6 +19,7 @@ public class CalendrierGifController {
 
 	private final UtilisateurService utilisateurService;
 	private final EmotionService emotionService;
+	private final ThemeService themeService;
 
 	// Toutes les méthodes de ce controller devront renvoyer un objet de type
 	// ModelAndView
@@ -59,7 +62,7 @@ public class CalendrierGifController {
 	public ModelAndView emotionGet(@RequestParam(name = "ID", required = false, defaultValue = "0") Long id) {
 		ModelAndView mav = new ModelAndView();
 
-		// On ajoute dans le mav l'objet emtion (si un id d'emotion a été précisé dans
+		// On ajoute dans le mav l'objet emotion (si un id d'emotion a été précisé dans
 		// l'URL)
 		mav.addObject("emotion", emotionService.recupererEmotion(id));
 		mav.setViewName("emotion");
@@ -91,5 +94,30 @@ public class CalendrierGifController {
 		emotionService.supprimerEmotion(id);
 		System.out.println("Suppression de l'emotion id " + id);
 		return new ModelAndView("redirect:emotions");
+	}
+
+	// Méthode invoquée lorsque l'utilisateur se rend sur /inscription
+	@GetMapping("inscription")
+	public ModelAndView inscriptionGet() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("themes", themeService.recupererThemes());
+
+		mav.setViewName("inscription");
+
+		return mav;
+	}
+
+	// Méthode invoquée quand l'utilisateur clique sur le bouton inscription
+	@PostMapping("inscription")
+	public ModelAndView inscriptionPost(@RequestParam(name = "NOM") String nom,
+			@RequestParam(name = "PRENOM") String prenom, @RequestParam(name = "EMAIL") String email,
+			@RequestParam(name = "MOT_DE_PASSE") String motDePasse, @RequestParam(name = "THEME_ID") Long ID) {
+
+		Theme theme = themeService.recupererTheme(ID);
+		utilisateurService.ajouterUtilisateur(nom, prenom, email, motDePasse, theme);
+
+		return new ModelAndView("redirect:emotions");
+
 	}
 }
