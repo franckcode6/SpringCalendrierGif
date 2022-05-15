@@ -117,7 +117,7 @@ public class CalendrierGifController {
 		Theme theme = themeService.recupererTheme(ID);
 		utilisateurService.ajouterUtilisateur(nom, prenom, email, motDePasse, theme);
 
-		return new ModelAndView("redirect:emotions");
+		return new ModelAndView("redirect:index");
 
 	}
 }

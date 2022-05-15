@@ -3,4 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:useBean id="dateFin" class="java.util.Date"/>
 <c:set var="msFin" value="${dateFin.getTime()}" scope="page" />
-<p>Page générée en ${msFin - msDepart} ms</p>
+<footer class="fixed-bottom text-white text-center bg-secondary bg-gradient">
+<p class="container py-2 my-0">Page générée en ${msFin - msDepart} ms</p>
+</footer>
