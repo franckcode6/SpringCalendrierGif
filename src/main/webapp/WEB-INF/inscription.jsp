@@ -41,6 +41,7 @@
 			</div>
 			
 			<div class="mb-3">
+			<label class="form-label" for="theme">Theme</label>
 			<select class="form-select" name="THEME_ID">
 				<option value="0">Merci de choisir un thème</option>
 				<c:forEach items="${themes}" var="theme">
