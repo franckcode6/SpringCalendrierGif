@@ -4,5 +4,5 @@
 <jsp:useBean id="dateFin" class="java.util.Date"/>
 <c:set var="msFin" value="${dateFin.getTime()}" scope="page" />
 <footer class="fixed-bottom text-white text-center bg-secondary bg-gradient">
-<p class="container py-2 my-0">Page générée en ${msFin - msDepart} ms</p>
+<p class="container py-1 my-0">Page générée en ${msFin - msDepart} ms</p>
 </footer>

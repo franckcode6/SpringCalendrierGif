@@ -53,7 +53,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		ajouterJours();
 
 		// UTILISATEURS
-		ajouterUtilisateurParDéfaut();
 		ajouterUtilisateurs();
 
 		Date dateFin = new Date();
@@ -64,27 +63,32 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 * Ajout des émotions
 	 */
 	private void ajouterEmotions() {
-		emotions.add(new Emotion("Souriant", "&#x1F600;"));
-		emotions.add(new Emotion("Monocle", "&#x1F9D0;"));
-		emotions.add(new Emotion("Bisous", "&#x1F618;"));
-		emotions.add(new Emotion("Coeur", "&#x1F60D;"));
-		emotions.add(new Emotion("PTDR", "&#x1F923;"));
-		emotionDao.saveAll(emotions);
+		if (emotionDao.count() == 0) {
+			emotions.add(new Emotion("Souriant", "&#x1F600;"));
+			emotions.add(new Emotion("Monocle", "&#x1F9D0;"));
+			emotions.add(new Emotion("Bisous", "&#x1F618;"));
+			emotions.add(new Emotion("Coeur", "&#x1F60D;"));
+			emotions.add(new Emotion("PTDR", "&#x1F923;"));
+			emotionDao.saveAll(emotions);
+		}
 	}
 
 	/**
 	 * Ajout des thèmes
 	 */
 	private void ajouterThemes() {
-		themes.add(new Theme("Dark"));
-		themes.add(new Theme("Bachata"));
-		themeDao.saveAll(themes);
+		if (themeDao.count() == 0) {
+			themes.add(new Theme("Dark"));
+			themes.add(new Theme("Bachata"));
+			themeDao.saveAll(themes);
+		}
 	}
 
 	/**
 	 * Ajout des jours
 	 */
 	private void ajouterJours() {
+		if (jourDao.count() == 0) {
 		int anneeEnCours = LocalDate.now().getYear();
 		int moisEnCours = LocalDate.now().getMonthValue();
 		LocalDate localDate = LocalDate.of(anneeEnCours, moisEnCours, 1);
@@ -94,19 +98,15 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			localDate = localDate.plusDays(1);
 		}
 		jourDao.saveAll(jours);
+		}
 	}
-
-	/**
-	 * Ajout d'un utilisateur par défaut
-	 */
-	private void ajouterUtilisateurParDéfaut() {
-		utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
-	}
-
+	
 	/**
 	 * Ajout des utilisateurs randoms
 	 */
 	private void ajouterUtilisateurs() {
+		if (utilisateurDao.count() == 0) {
+			utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
 		for (int i = 0; i < 10000; i++) {
 			utilisateurs.add(new Utilisateur(
 					faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
@@ -115,4 +115,5 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 		utilisateurDao.saveAll(utilisateurs);
 	}
+}
 }

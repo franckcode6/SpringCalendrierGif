@@ -15,4 +15,6 @@ public interface UtilisateurService {
 	Long compterUtilisateurs();
 
 	void ajouterUtilisateur(String nom, String prenom, String email, String motDePasse, Theme theme);
+
+	void ajouterUtilisateur(Utilisateur utilisateur);
 }

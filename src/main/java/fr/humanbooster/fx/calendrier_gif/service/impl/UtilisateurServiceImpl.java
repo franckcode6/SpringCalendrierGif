@@ -40,4 +40,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		
 	}
 
+	@Override
+	public void ajouterUtilisateur(Utilisateur utilisateur) {
+		utilisateurDao.save(utilisateur);
+		
+	}
+
 }

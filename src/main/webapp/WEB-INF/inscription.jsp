@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,39 +19,27 @@
 <body>
 	<jsp:include page="hautDePage.jsp"></jsp:include>
 	<main class="container">
-		<form action="inscription" method="post">
-			<div class="mb-3">
-				<label class="form-label" for="nom">Nom</label> 
-				<input class="form-control" name="NOM">
-			</div>
-			
-			<div class="mb-3">
-			<label class="form-label" for="prenom">Prénom</label>
-			<input class="form-control" name="PRENOM">
-			</div>
-			
-			<div class="mb-3">
-			<label class="form-label" for="email">Email</label>
-			<input class="form-control" type="email" name="EMAIL">
-			</div>
-			
-			<div class="mb-3">
-			<label class="form-label" for="mot_de_passe">Mot de passe</label>
-			<input class="form-control"  type="password" name="MOT_DE_PASSE">
-			</div>
-			
-			<div class="mb-3">
-			<label class="form-label" for="theme">Theme</label>
-			<select class="form-select" name="THEME_ID">
-				<option value="0">Merci de choisir un thème</option>
-				<c:forEach items="${themes}" var="theme">
-					<option class="form-control" value="${theme.id}">${theme.nom}</option>
-				</c:forEach>
-			</select>
-			</div>
-
-			<input class="btn btn-success" type="submit" value="Inscription">
-		</form>
+		<form:form modelAttribute="utilisateur" action="inscription" method="post">
+	<form:label path="nom">Nom</form:label>
+	<form:input path="nom" />
+	<form:errors path="nom" cssClass="erreur" /><br>
+	<form:label path="prenom">Prénom</form:label>
+	<form:input path="prenom" />
+	<form:errors path="prenom" cssClass="erreur" /><br>
+	<form:label path="email">Email</form:label>
+	<form:input path="email" />
+	<form:errors path="email" cssClass="erreur" /><br>
+	<form:label path="motDePasse">Mot de passe</form:label>
+	<form:password path="motDePasse" />
+	<form:errors path="motDePasse" cssClass="erreur" /><br>
+	<form:label path="theme">Thème</form:label>
+	<form:select path="theme">
+		<form:option value="0">Merci de choisir un thème</form:option>
+		<form:options items="${theme}" itemValue="id" itemLabel="nom"/>
+	</form:select>
+	<form:errors path="theme" cssClass="erreur" /><br>
+	<form:button>Inscription</form:button>
+</form:form>
 	</main>
 
 	<jsp:include page="piedDePage.jsp"></jsp:include>
