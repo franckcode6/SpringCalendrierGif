@@ -1,7 +1,9 @@
 package fr.humanbooster.fx.calendrier_gif.controller;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +16,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CalendrierController {
 
+	private static final int NB_JOURS_PAR_PAGE = 7;
+	
 	private final JourService jourService;
-
+	private final HttpSession httpSession;
+	
 	/**
 	 * Méthode permettant de générer la page de calendrier On y inclut la totalité
 	 * des jours en BDD
@@ -23,11 +28,15 @@ public class CalendrierController {
 	 * @return
 	 */
 	@GetMapping("calendrier")
-	public ModelAndView calendrierGet(@PageableDefault(size=10) Pageable pageable) {
+	public ModelAndView calendrierGet(@PageableDefault(size = NB_JOURS_PAR_PAGE, sort = "date") Pageable pageable) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("jours", jourService.recupererJours());
-		mav.addObject("pages", jourService.recupererJours(pageable));
 		mav.setViewName("calendrier");
+		mav.addObject("pageDeJours", jourService.recupererJours(pageable));
+		// Met en session la page choisie
+		if (pageable!=null) {
+			httpSession.setAttribute("numeroDePage", pageable.getPageNumber());
+		}
 		return mav;
 	}
 }

@@ -54,7 +54,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 		// UTILISATEURS
 		ajouterUtilisateurs();
-
+		
 		Date dateFin = new Date();
 		System.out.println("Données initiales générées en " + (dateFin.getTime() - dateDebut.getTime()) + " ms");
 	}

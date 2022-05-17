@@ -30,15 +30,23 @@
 <body>
 	<jsp:include page="hautDePage.jsp"></jsp:include>
 	<main class="container">
-		<h2>
-			Utilisateur : ${sessionScope.utilisateur.prenom} - solde :
-			${sessionScope.utilisateur.nbPoints} points
-		</h2>
+		<h2>Utilisateur : ${sessionScope.utilisateur.prenom} - solde :
+			${sessionScope.utilisateur.nbPoints} points</h2>
 		<table>
 			<thead>
 				<tr>
-					<th>Jour</th>
-					<th colspan="5">Gif</th>
+					<th>
+					<a href="calendrier?sort=date,asc">
+					Jour
+					</a></th>
+					<th colspan="5">
+					<a href="calendrier?sort=nbPoints,desc">
+					Gif
+					</a>
+					<a href="calendrier?sort=nbPoints,asc">
+					<i class="bi bi-arrow-down-short"></i>
+					</a>
+					</th>
 					<th colspan="3">Utilisateur</th>
 					<th colspan="3">Reactions</th>
 				</tr>
@@ -46,7 +54,7 @@
 			<tbody>
 				<!-- Creation d'une boucle pour chaque jour dans mon tableau jours (cf CalendrierServlet)
 			On renvoie une ligne du tableau pour chaque �l�ment -->
-				<c:forEach items="${jours}" var="jour">
+				<c:forEach items="${pageDeJours.content}" var="jour">
 					<tr class="tableRow">
 						<td>${jour}</td>
 						<td colspan="5"><c:choose>
@@ -92,6 +100,17 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<h2>
+			<c:if test="${!pageDeJours.first}">
+				<a href="calendrier?page=0&sort=${sort}">&#x23EE;</a>
+				<a href="calendrier?page=${pageDeJours.number-1}&sort=${sort}">&#x23EA;</a>
+			</c:if>
+			Page ${pageDeJours.getNumber()+1}
+			<c:if test="${!pageDeJours.last}">
+				<a href="calendrier?page=${pageDeJours.number+1}&sort=${sort}">&#x23E9;</a>
+				<a href="calendrier?page=${pageDeJours.totalPages - 1}&sort=${sort}">&#x23ED;</a>
+			</c:if>
+		</h2>
 	</main>
 </body>
 </html>

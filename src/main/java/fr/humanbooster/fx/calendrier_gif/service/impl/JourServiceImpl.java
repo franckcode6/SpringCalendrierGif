@@ -1,5 +1,6 @@
 package fr.humanbooster.fx.calendrier_gif.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -26,5 +27,12 @@ public class JourServiceImpl implements JourService {
     public Page<Jour> recupererJours(Pageable pageable) {
         return jourDao.findAll(pageable);
     }
+
+	@Override
+	public Jour ajouterJour() {
+		LocalDate date = jourDao.findFirstByOrderByDateDesc().getDate();
+		Jour jour = jourDao.save(new Jour(date.plusDays(1)));
+		return jour;
+	}
 
 }

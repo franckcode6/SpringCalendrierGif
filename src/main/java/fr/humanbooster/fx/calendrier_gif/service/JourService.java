@@ -12,5 +12,8 @@ public interface JourService {
 	List<Jour> recupererJours();
 
 	Page<Jour> recupererJours(Pageable pageable);
+	
+	Jour ajouterJour();
+	
 
 }
