@@ -59,8 +59,8 @@ public abstract class Gif {
 		this.jour = jour;
 		this.utilisateur = utilisateur;
 		// On affecte l'objet en cours de creation au jour donné en paramètre
-		jour.setGif(this);
-		utilisateur.getGifs().add(this);
+//		jour.setGif(this);
+//		utilisateur.getGifs().add(this);
 	}
 
 	@Override

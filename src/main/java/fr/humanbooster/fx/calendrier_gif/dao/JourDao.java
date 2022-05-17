@@ -44,4 +44,6 @@ public interface JourDao extends JpaRepository<Jour, LocalDate> {
 	List<Jour> findByGifIsNullAndNbPointsGreaterThanEqualAndDateBefore(int points, LocalDate date);
 	
 	Jour findFirstByOrderByDateDesc();
+	
+	Jour findByDate(LocalDate date);
 }

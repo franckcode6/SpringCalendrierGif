@@ -1,6 +1,6 @@
 package fr.humanbooster.fx.calendrier_gif.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -21,8 +21,8 @@ import lombok.AllArgsConstructor;
 public class UtilisateurController {
 
 	private final UtilisateurService utilisateurService;
-	private final HttpServletRequest request;
 	private final ThemeService themeService;
+	private final HttpSession httpSession;
 
 	// Toutes les méthodes de ce controller devront renvoyer un objet de type
 	// ModelAndView
@@ -61,7 +61,7 @@ public class UtilisateurController {
 		if (utilisateurService.recupererUtilisateur(email, motDePasse) == null) {
 			return new ModelAndView("redirect:index");
 		} else {
-			request.getSession().setAttribute("utilisateur",
+			httpSession.setAttribute("utilisateur",
 					utilisateurService.recupererUtilisateur(email, motDePasse));
 			System.out.println("CONNEXION OK");
 			return new ModelAndView("redirect:calendrier");
@@ -76,7 +76,7 @@ public class UtilisateurController {
 	 */
 	@GetMapping("deconnexion")
 	public ModelAndView deconnexionGet() {
-		request.getSession().invalidate();
+		httpSession.invalidate();
 		return new ModelAndView("redirect:index");
 	}
 

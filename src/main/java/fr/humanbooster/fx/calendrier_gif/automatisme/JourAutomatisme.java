@@ -1,7 +1,7 @@
 package fr.humanbooster.fx.calendrier_gif.automatisme;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 
 import fr.humanbooster.fx.calendrier_gif.service.JourService;
 import lombok.AllArgsConstructor;

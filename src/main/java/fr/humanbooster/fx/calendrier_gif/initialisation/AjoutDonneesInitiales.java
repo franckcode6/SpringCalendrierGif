@@ -78,8 +78,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 */
 	private void ajouterThemes() {
 		if (themeDao.count() == 0) {
+			themes.add(new Theme("Salmon"));
 			themes.add(new Theme("Dark"));
-			themes.add(new Theme("Bachata"));
 			themeDao.saveAll(themes);
 		}
 	}

@@ -34,5 +34,10 @@ public class JourServiceImpl implements JourService {
 		Jour jour = jourDao.save(new Jour(date.plusDays(1)));
 		return jour;
 	}
+	
+	@Override
+	public Jour recupererJour(LocalDate date) {
+        return jourDao.findByDate(date);
+    }
 
 }

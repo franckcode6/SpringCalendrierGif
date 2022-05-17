@@ -1,23 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Calendrier Gif</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-<link href="style/style1.css" rel="stylesheet">
+<style type="text/css">
+<%@include file="style/themeJ.css"%>
+</style>
 </head>
 <body>
-	<jsp:include page="hautDePage.jsp"></jsp:include>
-	<main class="container">
+<h1>Calendrier Gif</h1>
 		<c:if test="${param.notification ne null}">
 			<h2>${param.notification}</h2>
 		</c:if>
@@ -41,13 +35,13 @@
 		</form>
 
 		<!-- 	<a href="inscription">S'inscrire</a> -->
-		<h2>Utilisateurs ayant rÃ©agi au moins 5 fois</h2>
+		<h2>Utilisateurs ayant réagi au moins 5 fois</h2>
 		<ul>
 			<c:forEach items="${utilisateurs}" var="utilisateur">
 				<li>${utilisateur.prenom}</li>
 			</c:forEach>
 		</ul>
-		<h2>Nb d'inscrits par annÃ©e et par mois</h2>
+		<h2>Nb d'inscrits par année et par mois</h2>
 		<c:forEach items="${nbInscrits}" var="nbInscrit">
 	${nbInscrit.annee}/${nbInscrit.mois} : ${nbInscrit.nbInscrits}<br>
 		</c:forEach>

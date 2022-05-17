@@ -1,0 +1,78 @@
+@charset "ISO-8859-1";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap')
+	;
+
+body {
+	font-family: 'Patrick Hand', cursive;;
+	background-color: #e9967a;
+	color: white;
+	width: 1200px;
+	margin: auto;
+}
+
+a {
+	color: white;
+}
+
+h1 {
+	color: #F9E79F;
+	font-family: 'Oleo Script', cursive;
+}
+
+label {
+	display: block;
+	width: 210px;
+	float: left;
+	font-family: "Courier";
+}
+
+img {
+	max-width: 300px;
+}
+
+input[type="text"] {
+	width: 200px;
+	font-family: "Courier";
+}
+
+input[type="submit"] {
+	width: 100px;
+	font-family: "Courier";
+}
+
+select {
+	width: 206px;
+	font-family: "Courier";
+}
+
+table {
+	border: 20px solid #F9E79F;
+	border-radius: 20px;
+	padding: 50px;
+	margin: auto;
+}
+
+#pagination {
+	text-align: center
+}
+
+.erreur {
+	color: red;
+}
+
+.button {
+	background-color: #5DADE2;
+	border-radius: 20px;
+	padding: 10px 20px;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+	margin-top: 10px;
+}

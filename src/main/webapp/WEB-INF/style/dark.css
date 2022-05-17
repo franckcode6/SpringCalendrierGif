@@ -1,0 +1,69 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #1f282d;
+	color: white;
+	font-family: "Arial";
+	width: 1200px;
+	margin: auto;
+}
+
+a {
+	color: #64a1bd;
+}
+
+h1 {
+	color: #ef82a9;
+	font-family: "Arial";
+}
+
+label {
+	display: block;
+	width: 210px;
+	float: left;
+	font-family: "Arial";
+}
+
+img {
+	max-width: 300px;
+}
+
+input[type="text"] {
+	width: 200px;
+	font-family: "Arial";
+}
+
+input[type="submit"] {
+	width: 100px;
+	font-family: "Arial";
+}
+
+select {
+	width: 206px;
+	font-family: "Arial";
+}
+
+table {
+	border: 20px solid lightblue;
+	border-radius: 20px;
+	padding: 50px;
+	margin: auto;
+}
+
+#pagination {
+	text-align: center
+}
+
+.erreur {
+	color: red;
+}
+
+.button {
+	background-color: red;
+	border-radius: 20px;
+	padding: 10px 20px;
+	color: white;
+	border: none;
+	cursor: pointer;
+	margin-top: 10px;
+}

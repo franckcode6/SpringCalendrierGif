@@ -1,0 +1,62 @@
+@charset "ISO-8859-1";
+
+body {
+    width: 1200px;
+    margin: auto;
+    background-color: rgb(63, 100, 82);
+}
+
+header {
+    background-color: rgb(63, 100, 82);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 177, 177);
+    margin-top: 500px
+}
+
+h1 {
+    color: rgb(255, 177, 177);
+}
+
+h2 {
+    color: rgb(255, 157, 157);
+}
+
+label {
+    display: block;
+    width: 150px;
+    float: left;
+    margin-top: 10px;
+}
+
+.inputEsc{
+    display: block;
+    width: 300px;
+    float: left;
+    margin-top: 10px;
+}
+
+.button {
+    margin-top: 20px;
+    background-color: rgb(255, 177, 177);
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+table {
+    margin: auto;
+    color: rgb(255, 177, 177)
+}
+
+img {
+    max-width: 400px
+}

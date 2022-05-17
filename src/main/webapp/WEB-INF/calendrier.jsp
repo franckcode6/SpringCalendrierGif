@@ -4,49 +4,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%-- <c:choose> --%>
-<%-- 	<c:when test="${sessionScope.utilisateur.theme.id eq 1}"> --%>
-<!-- 		<style type="text/css"> -->
-<%-- <%@include file="style/darksalmon.css"%> --%>
-<!-- </style> -->
-<%-- 	</c:when> --%>
-<%-- 	<c:otherwise> --%>
-<!-- 		<style type="text/css"> -->
-<%-- <%@include file="style/dark.css"%> --%>
-<!-- </style> -->
-<%-- 	</c:otherwise> --%>
-<%-- </c:choose> --%>
+<c:choose>
+	<c:when test="${sessionScope.utilisateur.theme.id eq 1}">
+<style type="text/css">
+<%@include file="style/darksalmon.css"%>
+</style>
+	</c:when>
+	<c:otherwise>
+		<style type="text/css">
+<%@include file="style/dark.css"%>
+</style>
+	</c:otherwise>
+</c:choose>
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css"/>
 <meta charset="ISO-8859-1">
 <title>Calendrier Gif</title>
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-</head>
 <body>
-	<jsp:include page="hautDePage.jsp"></jsp:include>
-	<main class="container">
-		<h2>Utilisateur : ${sessionScope.utilisateur.prenom} - solde :
-			${sessionScope.utilisateur.nbPoints} points</h2>
+	<header>
+		<h1>Calendrier Gif</h1>
+		<!-- Affichage des informations utilisateur -->
+		<h2>
+			Utilisateur : ${sessionScope.utilisateur.prenom} - solde :
+			${sessionScope.utilisateur.nbPoints} points <a href="deconnexion">Déconnexion</a>
+		</h2>
+	</header>
+	<main>
 		<table>
 			<thead>
 				<tr>
-					<th>
-					<a href="calendrier?sort=date,asc">
-					Jour
+					<th><a href="calendrier?sort=date,asc"> Jour </a></th>
+					<th colspan="5"><a href="calendrier?sort=nbPoints,desc">
+							Gif </a> <a href="calendrier?sort=nbPoints,asc"> <i
+							class="bi bi-arrow-down-short"></i>
 					</a></th>
-					<th colspan="5">
-					<a href="calendrier?sort=nbPoints,desc">
-					Gif
-					</a>
-					<a href="calendrier?sort=nbPoints,asc">
-					<i class="bi bi-arrow-down-short"></i>
-					</a>
-					</th>
 					<th colspan="3">Utilisateur</th>
 					<th colspan="3">Reactions</th>
 				</tr>
@@ -61,7 +52,7 @@
 								<c:when test="${jour.gif eq null}">
 									<p>${jour.nbPoints}points</p>
 									<ul>
-										<li><a href="calendrier/gifdistant?date=${jour.date}">Placer
+										<li><a href="gifdistant?date=${jour.date}">Placer
 												un gif distant</a></li>
 										<li><a href="calendrier/gifteleverse?date=${jour.date}">Placer
 												un gif téléversé</a></li>
@@ -93,14 +84,14 @@
 										<li>${reaction.emotion.code}
 											${reaction.utilisateur.prenom} ${reaction.utilisateur.nom}</li>
 									</c:forEach>
-									<li><a href="calendrier/reaction?gif_id=${jour.gif.id}">Rï¿½agir</a></li>
+									<li><a href="calendrier/reaction?gif_id=${jour.gif.id}">Réaction</a></li>
 								</ul>
 							</c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<h2>
+		<h2 id="pagination">
 			<c:if test="${!pageDeJours.first}">
 				<a href="calendrier?page=0&sort=${sort}">&#x23EE;</a>
 				<a href="calendrier?page=${pageDeJours.number-1}&sort=${sort}">&#x23EA;</a>
