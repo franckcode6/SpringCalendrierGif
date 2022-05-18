@@ -17,6 +17,10 @@ h1 {
 	font-family: "Arial";
 }
 
+header {
+	text-align: center;
+}
+
 label {
 	display: block;
 	width: 210px;

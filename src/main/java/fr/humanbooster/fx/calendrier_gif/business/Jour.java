@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,6 +27,7 @@ public class Jour {
 	@Column(name = "nb_points")
 	private int nbPoints;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "jour")
 	@ToString.Exclude
 	private Gif gif;

@@ -25,6 +25,10 @@ h1 {
 	font-family: 'Oleo Script', cursive;
 }
 
+header {
+	text-align: center;
+}
+
 label {
 	display: block;
 	width: 210px;

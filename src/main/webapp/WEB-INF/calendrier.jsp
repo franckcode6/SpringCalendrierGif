@@ -25,7 +25,7 @@
 		<h1>Calendrier Gif</h1>
 		<!-- Affichage des informations utilisateur -->
 		<h2>
-			Utilisateur : ${sessionScope.utilisateur.prenom} - solde :
+			Utilisateur·rice : ${sessionScope.utilisateur.prenom} - solde :
 			${sessionScope.utilisateur.nbPoints} points <a href="deconnexion">Déconnexion</a>
 		</h2>
 	</header>
@@ -38,7 +38,7 @@
 							Gif </a> <a href="calendrier?sort=nbPoints,asc"> <i
 							class="bi bi-arrow-down-short"></i>
 					</a></th>
-					<th colspan="3">Utilisateur</th>
+					<th colspan="3">Utilisateur·rice</th>
 					<th colspan="3">Reactions</th>
 				</tr>
 			</thead>
@@ -68,7 +68,7 @@
 									</c:if>
 									<c:if
 										test="${jour.gif.getClass().simpleName eq 'GifTeleverse'}">
-										<img src="img/${jour.gif.id}.gif" height="200"
+										<img src="images/${jour.gif.nomFichierOriginal}" height="200"
 											alt="${jour.gif.nomFichierOriginal}"
 											title="${jour.gif.nomFichierOriginal}">
 									</c:if>
