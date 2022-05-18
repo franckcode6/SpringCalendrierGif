@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import fr.humanbooster.fx.calendrier_gif.business.Gif;
+import fr.humanbooster.fx.calendrier_gif.business.Jour;
 import fr.humanbooster.fx.calendrier_gif.business.Utilisateur;
 
 public interface GifDao extends JpaRepository<Gif, Long> {
@@ -23,4 +24,10 @@ public interface GifDao extends JpaRepository<Gif, Long> {
 	List<Gif> findByUtilisateurId(Long id);
 	
 	List<Gif> findByUtilisateurNom(String nom);
+	
+	List<Gif> findGifsByLegende(String legende);
+	
+	Gif findByJour(Jour jour);
+	
+	
 }
