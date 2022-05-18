@@ -54,7 +54,7 @@
 									<ul>
 										<li><a href="gifdistant?date=${jour.date}">Placer
 												un gif distant</a></li>
-										<li><a href="calendrier/gifteleverse?date=${jour.date}">Placer
+										<li><a href="gifteleverse?date=${jour.date}">Placer
 												un gif téléversé</a></li>
 									</ul>
 								</c:when>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.humanbooster.fx.calendrier_gif.business.Utilisateur;
-import fr.humanbooster.fx.calendrier_gif.service.GifDistantService;
+import fr.humanbooster.fx.calendrier_gif.service.GifService;
 import fr.humanbooster.fx.calendrier_gif.service.JourService;
 import lombok.AllArgsConstructor;
 
@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class GifController {
 
-	private final GifDistantService gifDistantService;
+	private final GifService gifService;
 	private final JourService jourService;
 	private final HttpSession httpSession;
 
@@ -37,8 +37,17 @@ public class GifController {
 			@RequestParam(name = "LEGENDE") String legende) {
 		LocalDate data = LocalDate.parse(date);
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
-		gifDistantService.ajouterGifDistant(url, legende, jourService.recupererJour(data), utilisateur);
+		gifService.ajouterGifDistant(url, legende, jourService.recupererJour(data), utilisateur);
 
 		return new ModelAndView("redirect:calendrier");
+	}
+	
+	@GetMapping("gifteleverse")
+	public ModelAndView gifTeleverseGet() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("gifTeleverse");
+
+		return mav;
 	}
 }
