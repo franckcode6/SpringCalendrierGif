@@ -18,34 +18,44 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class ReactionController {
-	
+
 	private final GifService gifService;
 	private final ReactionService reactionService;
 	private final EmotionService emotionService;
 	private final HttpSession httpSession;
-	
-	
+
+	/**
+	 * Affichage de la vue reaction
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("reaction")
-	public ModelAndView reactionsGet(@RequestParam(name="gif_id") Long id) {
+	public ModelAndView reactionsGet(@RequestParam(name = "gif_id") Long id) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		Gif gif = gifService.recupererGif(id);
-		
+
 		mav.addObject("gif", gif);
 		mav.addObject("emotions", emotionService.recupererEmotions());
 		mav.setViewName("reaction");
-		
+
 		return mav;
 	}
-	
+
+	/**
+	 * Ajout d'une nouvelle reaction
+	 * @param id
+	 * @param emotionId
+	 * @return
+	 */
 	@PostMapping("reaction")
-	public ModelAndView reactionPost(@RequestParam(name="gif_id") Long id,
-			@RequestParam(name="emotion_id") Long emotionId) {
+	public ModelAndView reactionPost(@RequestParam(name = "gif_id") Long id,
+			@RequestParam(name = "emotion_id") Long emotionId) {
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
-		
+
 		reactionService.ajouterReaction(gifService.recupererGif(id), emotionService.recupererEmotion(emotionId),
 				utilisateur);
-		
+
 		return new ModelAndView("redirect:calendrier");
 	}
 

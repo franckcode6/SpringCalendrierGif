@@ -25,6 +25,10 @@ public class GifController {
 	private final JourService jourService;
 	private final HttpSession httpSession;
 
+	/**
+	 * Affichage de la vue gifDistant
+	 * @return
+	 */
 	@GetMapping("gifdistant")
 	public ModelAndView gifDistantGet() {
 		ModelAndView mav = new ModelAndView();
@@ -34,6 +38,13 @@ public class GifController {
 		return mav;
 	}
 
+	/**
+	 * Ajout d'un nouveau gif distant
+	 * @param date
+	 * @param url
+	 * @param legende
+	 * @return
+	 */
 	@PostMapping("gifdistant")
 	public ModelAndView gifDistantPost(@RequestParam(name = "date") String date, @RequestParam(name = "URL") String url,
 			@RequestParam(name = "LEGENDE") String legende) {
@@ -44,6 +55,10 @@ public class GifController {
 		return new ModelAndView("redirect:calendrier");
 	}
 	
+	/**
+	 * Affichage de la vue gifTeleverse
+	 * @return
+	 */
 	@GetMapping("gifteleverse")
 	public ModelAndView gifTeleverseGet() {
 		ModelAndView mav = new ModelAndView();
