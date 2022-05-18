@@ -18,6 +18,8 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class GifController {
+	
+	protected static final String DOSSIER_IMAGES = "src/main/webapp/images/";
 
 	private final GifService gifService;
 	private final JourService jourService;
