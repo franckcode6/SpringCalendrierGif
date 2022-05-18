@@ -84,7 +84,7 @@
 										<li>${reaction.emotion.code}
 											${reaction.utilisateur.prenom} ${reaction.utilisateur.nom}</li>
 									</c:forEach>
-									<li><a href="calendrier/reaction?gif_id=${jour.gif.id}">Réaction</a></li>
+									<li><a href="reaction?gif_id=${jour.gif.id}">Réaction</a></li>
 								</ul>
 							</c:if></td>
 					</tr>
