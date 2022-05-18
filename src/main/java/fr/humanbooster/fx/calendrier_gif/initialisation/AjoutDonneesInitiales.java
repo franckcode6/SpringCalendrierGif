@@ -106,7 +106,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	 */
 	private void ajouterUtilisateurs() {
 		if (utilisateurDao.count() == 0) {
-			utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(2L)));
+			utilisateurDao.save(new Utilisateur("Quasevi", "Franck", "franck@hb.com", "12345", themeDao.getById(1L)));
 		for (int i = 0; i < 10000; i++) {
 			utilisateurs.add(new Utilisateur(
 					faker.date().past(365, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),

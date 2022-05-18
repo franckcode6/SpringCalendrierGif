@@ -79,13 +79,23 @@ public class GifController {
 		return mav;
 	}
 
+	/**
+	 * Ajout d'un gif téléversé
+	 * 
+	 * @param date
+	 * @param legende
+	 * @param fichier
+	 * @return
+	 * @throws IOException
+	 */
 	@PostMapping("gifteleverse")
 	public ModelAndView gifTeleversePost(@RequestParam(name = "date") String date,
 			@RequestParam(name = "legende") String legende, @RequestParam("fichier") MultipartFile fichier)
 			throws IOException {
 		LocalDate data = LocalDate.parse(date);
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
-		
+
+		// Création du nom de fichier
 		String nomFichierOriginal = "image" + compteurGif + ".gif";
 		compteurGif++;
 
@@ -94,7 +104,7 @@ public class GifController {
 		enregisterFichier(nomFichierOriginal, fichier);
 		// FIN DE ZONE DE TURBULENCE
 		///////////////////////////
-		
+
 		gifService.ajouterGifTeleverse(nomFichierOriginal, legende, jourService.recupererJour(data), utilisateur);
 
 		return new ModelAndView("redirect:calendrier");
@@ -116,7 +126,6 @@ public class GifController {
 
 		try (InputStream inputStream = multipartFile.getInputStream()) {
 			Path cheminFichier = chemin.resolve(nom);
-			System.out.println(cheminFichier);
 			Files.copy(inputStream, cheminFichier, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException ioe) {
 			throw new IOException("Erreur d'écriture : " + nom, ioe);
