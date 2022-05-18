@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.humanbooster.fx.calendrier_gif.business.Gif;
-import fr.humanbooster.fx.calendrier_gif.business.GifTeleverse;
 import fr.humanbooster.fx.calendrier_gif.business.Utilisateur;
 import fr.humanbooster.fx.calendrier_gif.service.GifService;
 import fr.humanbooster.fx.calendrier_gif.service.JourService;
@@ -29,6 +27,7 @@ import lombok.AllArgsConstructor;
 public class GifController {
 
 	protected static final String DOSSIER_IMAGES = "src/main/webapp/images/";
+	private static Long compteurGif = 1L;
 
 	private final GifService gifService;
 	private final JourService jourService;
@@ -81,34 +80,22 @@ public class GifController {
 	}
 
 	@PostMapping("gifteleverse")
-	public ModelAndView gifTeleversePost(@RequestParam(name = "date") String date, @RequestParam(name = "legende") String legende,
-			@RequestParam("fichier") MultipartFile fichier) throws IOException {
+	public ModelAndView gifTeleversePost(@RequestParam(name = "date") String date,
+			@RequestParam(name = "legende") String legende, @RequestParam("fichier") MultipartFile fichier)
+			throws IOException {
 		LocalDate data = LocalDate.parse(date);
-		System.out.println(fichier);
-
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
+		
+		String nomFichierOriginal = "image" + compteurGif + ".gif";
+		compteurGif++;
 
-		Gif gifTeleverse = new GifTeleverse(null, legende, jourService.recupererJour(data),
-				utilisateur);
-		System.out.println(gifTeleverse.getId());
-		
-		String nomFichierOriginal = "image" + gifTeleverse.getId() + ".gif";
-
-		((GifTeleverse) gifTeleverse).setNomFichierOriginal(nomFichierOriginal);
-		
-		System.out.println(gifTeleverse);
-		
-		
 		///////////////////////////
-		// ZONE DE TURBULENCE (déso)
-		
+		// ZONE DE TURBULENCE
 		enregisterFichier(nomFichierOriginal, fichier);
-		
 		// FIN DE ZONE DE TURBULENCE
 		///////////////////////////
 		
-		gifService.enregistrerGif(gifTeleverse);
-		
+		gifService.ajouterGifTeleverse(nomFichierOriginal, legende, jourService.recupererJour(data), utilisateur);
 
 		return new ModelAndView("redirect:calendrier");
 	}

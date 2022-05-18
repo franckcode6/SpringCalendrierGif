@@ -26,7 +26,7 @@
 		<img src="${gif.url}" height="200" alt="Super image du calendrier !">
 	</c:if>
 	<c:if test="${gif.getClass().simpleName eq 'GifTeleverse'}">
-		<img src="${pageContext.request.contextPath}/img/${gif.id}.gif"
+		<img src="images/${gif.nomFichierOriginal}"
 			height="200" alt="${gif.nomFichierOriginal}"
 			title="${gif.nomFichierOriginal}">
 	</c:if>
