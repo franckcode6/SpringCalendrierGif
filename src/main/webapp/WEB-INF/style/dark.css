@@ -1,9 +1,10 @@
 @charset "ISO-8859-1";
 
 body {
-	/* 	background-color: #1f282d; */
-	background: linear-gradient(to right bottom, red, orange, yellow, green, blue,
-		purple);
+	/* 	Merci Laurent :) */
+	background: linear-gradient(to right bottom, red, Tomato, Coral, yellow,
+    GreenYellow, SpringGreen, Chartreuse, DeepSkyBlue, aqua,
+     indigo, MediumPurple, DarkMagenta, DeepPink, DarkOrchid );
 	background-repeat: no-repeat; 
 	background-size : cover; 
 	background-attachment : fixed;
