@@ -31,8 +31,6 @@ public class CalendrierGifController {
 	protected static final String DOSSIER_IMAGES = "src/main/webapp/images/";
 	private static final int NB_JOURS_PAR_PAGE = 7;
 	
-	private static Long compteurGif = 1L;
-	
 	private final GifService gifService;
 	private final HttpSession httpSession;
 	private final JourService jourService;
@@ -120,7 +118,6 @@ public class CalendrierGifController {
 
 		// Création du nom de fichier
 		String nomFichierOriginal = fichier.getOriginalFilename();
-		compteurGif++;
 
 		///////////////////////////
 		// ZONE DE TURBULENCE
