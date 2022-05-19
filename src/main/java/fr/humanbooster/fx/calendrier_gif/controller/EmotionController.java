@@ -16,7 +16,7 @@ public class EmotionController {
 	private final EmotionService emotionService;
 
 	// Méthode invoquée lorsque que quelqu'un se rend sur /emotions
-	@GetMapping("/emotions")
+	@GetMapping("calendrier/emotions")
 	public ModelAndView emotionsGet() {
 		ModelAndView mav = new ModelAndView();
 
@@ -28,7 +28,7 @@ public class EmotionController {
 
 	// Méthode invoquée lorsque que quelqu'un se rend sur le formulaire contenu dans
 	// /emotion
-	@GetMapping("emotion")
+	@GetMapping("calendrier/emotion")
 	public ModelAndView emotionGet(@RequestParam(name = "ID", required = false, defaultValue = "0") Long id) {
 		ModelAndView mav = new ModelAndView();
 
@@ -41,7 +41,7 @@ public class EmotionController {
 
 	// Méthode invoquée lorsque que quelqu'un clique le bouton Ajouter du formulaire
 	// contenu dans /emotion
-	@PostMapping("emotion")
+	@PostMapping("calendrier/emotion")
 	public ModelAndView emotionPost(@RequestParam(name = "ID", required = false) Long id,
 			@RequestParam("NOM") String nom, @RequestParam("CODE") String code) {
 

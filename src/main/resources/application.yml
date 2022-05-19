@@ -16,6 +16,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 #    show-sql: true
+    
 management:
   endpoint:
     info:
@@ -29,3 +30,14 @@ management:
 server:
   error:
     path: /erreur
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: INFO
+  file:
+    name: log/calendrier_gif_log
+  pattern:
+    console: "%d %p %c{1.} [%t] %m%n"
+    

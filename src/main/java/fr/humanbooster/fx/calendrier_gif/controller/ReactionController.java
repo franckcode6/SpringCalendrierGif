@@ -29,7 +29,7 @@ public class ReactionController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("reaction")
+	@GetMapping("calendrier/reaction")
 	public ModelAndView reactionsGet(@RequestParam(name = "gif_id") Long id) {
 		ModelAndView mav = new ModelAndView();
 
@@ -48,7 +48,7 @@ public class ReactionController {
 	 * @param emotionId
 	 * @return
 	 */
-	@PostMapping("reaction")
+	@PostMapping("calendrier/reaction")
 	public ModelAndView reactionPost(@RequestParam(name = "gif_id") Long id,
 			@RequestParam(name = "emotion_id") Long emotionId) {
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
@@ -56,7 +56,7 @@ public class ReactionController {
 		reactionService.ajouterReaction(gifService.recupererGif(id), emotionService.recupererEmotion(emotionId),
 				utilisateur);
 
-		return new ModelAndView("redirect:calendrier");
+		return new ModelAndView("redirect:/calendrier");
 	}
 
 }

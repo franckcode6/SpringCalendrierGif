@@ -59,7 +59,7 @@ public class CalendrierGifController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("gifdistant")
+	@GetMapping("calendrier/gifdistant")
 	public ModelAndView gifDistantGet() {
 		ModelAndView mav = new ModelAndView();
 
@@ -76,14 +76,14 @@ public class CalendrierGifController {
 	 * @param legende
 	 * @return
 	 */
-	@PostMapping("gifdistant")
+	@PostMapping("calendrier/gifdistant")
 	public ModelAndView gifDistantPost(@RequestParam(name = "date") String date, @RequestParam(name = "URL") String url,
 			@RequestParam(name = "LEGENDE") String legende) {
 		LocalDate data = LocalDate.parse(date);
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
 		gifService.ajouterGifDistant(url, legende, jourService.recupererJour(data), utilisateur);
 
-		return new ModelAndView("redirect:calendrier");
+		return new ModelAndView("redirect:/calendrier");
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class CalendrierGifController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("gifteleverse")
+	@GetMapping("calendrier/gifteleverse")
 	public ModelAndView gifTeleverseGet() {
 		ModelAndView mav = new ModelAndView();
 
@@ -109,7 +109,7 @@ public class CalendrierGifController {
 	 * @return
 	 * @throws IOException
 	 */
-	@PostMapping("gifteleverse")
+	@PostMapping("calendrier/gifteleverse")
 	public ModelAndView gifTeleversePost(@RequestParam(name = "date") String date,
 			@RequestParam(name = "legende") String legende, @RequestParam("fichier") MultipartFile fichier)
 			throws IOException {
@@ -127,7 +127,7 @@ public class CalendrierGifController {
 
 		gifService.ajouterGifTeleverse(nomFichierOriginal, legende, jourService.recupererJour(data), utilisateur);
 
-		return new ModelAndView("redirect:calendrier");
+		return new ModelAndView("redirect:/calendrier");
 	}
 
 	/**

@@ -52,9 +52,9 @@
 								<c:when test="${jour.gif eq null}">
 									<p>${jour.nbPoints}points</p>
 									<ul>
-										<li><a href="gifdistant?date=${jour.date}">Placer
+										<li><a href="calendrier/gifdistant?date=${jour.date}">Placer
 												un gif distant</a></li>
-										<li><a href="gifteleverse?date=${jour.date}">Placer
+										<li><a href="calendrier/gifteleverse?date=${jour.date}">Placer
 												un gif téléversé</a></li>
 									</ul>
 								</c:when>
@@ -84,7 +84,7 @@
 										<li>${reaction.emotion.code}
 											${reaction.utilisateur.prenom} ${reaction.utilisateur.nom}</li>
 									</c:forEach>
-									<li><a href="reaction?gif_id=${jour.gif.id}">Réaction</a></li>
+									<li><a href="calendrier/reaction?gif_id=${jour.gif.id}">Réaction</a></li>
 								</ul>
 							</c:if></td>
 					</tr>
