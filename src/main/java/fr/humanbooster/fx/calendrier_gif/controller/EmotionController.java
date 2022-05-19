@@ -54,7 +54,6 @@ public class EmotionController {
 		} else {
 			emotionService.modifierEmotion(id, nom, code);
 		}
-
 		return new ModelAndView("redirect:emotions");
 	}
 

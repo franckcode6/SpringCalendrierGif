@@ -44,7 +44,13 @@ public class GifServiceImpl implements GifService {
 	@Override
 	public GifTeleverse ajouterGifTeleverse(String nomFichierOriginal, String legende, Jour jour,
 			Utilisateur utilisateur) {
-		return gifTeleverseDao.save(new GifTeleverse(nomFichierOriginal, legende, jour, utilisateur));
+		GifTeleverse gifTeleverse = gifTeleverseDao
+				.save(new GifTeleverse(nomFichierOriginal, legende, jour, utilisateur));
+
+		utilisateur.setNbPoints(utilisateur.getNbPoints() - gifTeleverse.getJour().getNbPoints());
+		utilisateurDao.save(utilisateur);
+
+		return gifTeleverse;
 	}
 
 	@Override
@@ -69,7 +75,7 @@ public class GifServiceImpl implements GifService {
 		Gif gif = gifDao.findByJour(jour);
 		return gif;
 	}
-	
+
 	@Override
 	public List<Gif> recupererGifsParLegende(String legende) {
 		List<Gif> gifs = gifDao.findGifsByLegende(legende);

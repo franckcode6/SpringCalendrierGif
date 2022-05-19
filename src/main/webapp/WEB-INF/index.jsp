@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1>Calendrier Gif</h1>
+
 		<c:if test="${param.notification ne null}">
 			<h2>${param.notification}</h2>
 		</c:if>
@@ -35,7 +36,7 @@
 		</form>
 
 		<!-- 	<a href="inscription">S'inscrire</a> -->
-		<h2>Utilisateurs ayant réagi au moins 5 fois</h2>
+<!-- 		<h2>Utilisateurs ayant réagi au moins 5 fois</h2> -->
 		<ul>
 			<c:forEach items="${utilisateurs}" var="utilisateur">
 				<li>${utilisateur.prenom}</li>
@@ -46,7 +47,6 @@
 	${nbInscrit.annee}/${nbInscrit.mois} : ${nbInscrit.nbInscrits}<br>
 		</c:forEach>
 		Nombre d'inscrits : ${nbTotalInscrits}
-	</main>
 
 	<jsp:include page="piedDePage.jsp"></jsp:include>
 </body>
