@@ -23,7 +23,6 @@ a {
 }
 
 h1 {
-	color: #ef82a9;
 	font-family: "Arial";
 }
 
@@ -73,7 +72,7 @@ table {
 }
 
 .button {
-	background-color: red;
+	background-color: black;
 	border-radius: 20px;
 	padding: 10px 20px;
 	color: white;
