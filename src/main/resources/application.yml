@@ -16,7 +16,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 #    show-sql: true
-
 management:
   endpoint:
     info:
@@ -26,3 +25,7 @@ management:
       base-path: /
       exposure:
         include: beans
+        
+server:
+  error:
+    path: /erreur
