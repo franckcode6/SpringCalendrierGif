@@ -119,7 +119,7 @@ public class CalendrierGifController {
 		Utilisateur utilisateur = (Utilisateur) httpSession.getAttribute("utilisateur");
 
 		// Création du nom de fichier
-		String nomFichierOriginal = "image" + compteurGif + ".gif";
+		String nomFichierOriginal = fichier.getOriginalFilename();
 		compteurGif++;
 
 		///////////////////////////
