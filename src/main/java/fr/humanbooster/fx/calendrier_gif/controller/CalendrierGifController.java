@@ -30,11 +30,11 @@ public class CalendrierGifController {
 
 	protected static final String DOSSIER_IMAGES = "src/main/webapp/images/";
 	private static final int NB_JOURS_PAR_PAGE = 7;
-	
+
 	private final GifService gifService;
 	private final HttpSession httpSession;
 	private final JourService jourService;
-	
+
 	/**
 	 * Méthode permettant de générer la page de calendrier On y inclut la totalité
 	 * des jours en BDD
@@ -48,12 +48,12 @@ public class CalendrierGifController {
 		mav.setViewName("calendrier");
 		mav.addObject("pageDeJours", jourService.recupererJours(pageable));
 		// Met en session la page choisie
-		if (pageable!=null) {
+		if (pageable != null) {
 			httpSession.setAttribute("numeroDePage", pageable.getPageNumber());
 		}
 		return mav;
 	}
-	
+
 	/**
 	 * Affichage de la vue gifDistant
 	 * 
